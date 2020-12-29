@@ -1,17 +1,28 @@
 import random
 
+x = int(input('select range: '))
+
 
 def guess(x):
     random_number = random.randint(1, x)
+    lives = 4
     guess = 0
-    while guess != random_number:
+    while guess != random_number and lives != 0:
         guess = int(input(f'Guess a number between 1 and {x}: '))
         if guess < random_number:
-            print('Sorry guess again. Too Low.')
+            print("Sorry, guess again. Too low.")
         elif guess > random_number:
-            print('Sorry guess again. Too high')
+            print("Sorry, guess again. Too high")
 
-    print(f'Yay, congrats. You have guessed the random number {random_number} correctly!!')
+        lives -= 1
+        print(f'lives = {lives}')
+
+        if lives == 0 & guess != random_number:
+            print('Sorry you died!')
+            break
+
+    if guess == random_number:
+        print(f'Yay, congrats. you have guessed the number {random_number} correctly!')
 
 
 def computer_guess(x):
@@ -32,4 +43,5 @@ def computer_guess(x):
     print(f'Yay! The computer guessed you number {guess}, correctly!')
 
 
-computer_guess(10)
+guess(x)
+# computer_guess(x)
